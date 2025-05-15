@@ -5,7 +5,7 @@
             <div class="bg-white shadow-lg col-md-6 offset-md-3 col-12 mt-100 p-5">
                 <div class="rounded10 ">
                     <div class="content-top-agile p-20 pb-0">
-                        <a href="/"><img width="100" src="{{ asset(env('APP_AUTH_LOGO')) }}" alt="{{ env('APP_NAME') }}">
+                        <a href="/"><img width="100" src="{{ asset(env('APP_LOGO')) }}" alt="{{ env('APP_NAME') }}">
                         </a>
                         <br>
                         <h4 class="text-primary">{{ $title }}</h4>

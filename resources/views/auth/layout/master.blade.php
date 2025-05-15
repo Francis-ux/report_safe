@@ -10,7 +10,7 @@
         <meta name="author" content="{{ env('APP_NAME') }}">
         <link rel="icon" href="{{ asset(env('APP_FAVICON')) }}">
 
-        <title>{{ $title }} &mdash; {{ env('APP_NAME') }}</title>
+        <title>{{ $title }} &mdash; {{ env('APP_TITLE') }}</title>
 
         <!-- Vendors Style-->
         <link rel="stylesheet" href="/dashboard/resources/css/vendors_css.css">
