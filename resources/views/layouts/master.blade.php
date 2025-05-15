@@ -3,14 +3,10 @@
 
     <head>
         <meta charset="utf-8">
-        <title>{{ $title }} - {{ env('APP_TITLE') }}</title>
+        <title>{{ $title }} &mdash; {{ env('APP_TITLE') }}</title>
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta
-            content="child abuse, report abuse, child protection, abuse reporting app, safe child, report child abuse, ReportSafe"
-            name="keywords">
-        <meta
-            content="ReportSafe is a secure web app for confidentially reporting child abuse cases, enabling timely intervention and protection of vulnerable children."
-            name="description">
+        <meta content="{{ env('APP_KEYWORDS') }}" name="keywords">
+        <meta content="{{ env('APP_DESCRIPTION') }}" name="description">
 
         <!-- Favicon -->
         <link href="{{ env('APP_FAVICON') }}" rel="icon">
