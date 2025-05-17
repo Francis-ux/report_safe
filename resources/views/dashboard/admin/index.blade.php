@@ -1,4 +1,4 @@
-@extends('dashboard.admin.layout.master')
+@extends('dashboard.admin.layouts.master')
 @section('content')
     <section class="section">
         <div class="section-header">

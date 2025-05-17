@@ -26,9 +26,9 @@ return new class extends Migration
             // Abuse Info
             $table->string('abuse_type');
             $table->longText('incident_description');
-            $table->date('date')->nullable();
-            $table->time('time')->nullable();
+            $table->dateTime('datetime')->nullable();
             $table->string('evidence')->nullable(); // File path
+            $table->string('status')->default('Open');
             $table->timestamps();
         });
     }

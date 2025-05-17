@@ -13,26 +13,26 @@
                         class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             <li class="menu-header">{{ env('APP_NAME') }}</li>
-            <li class="dropdown {{ setActiveMenu(['']) }}">
+            <li class="dropdown">
                 <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i
                         class="fas fa-file-medical"></i>
                     <span>Reports</span></a>
                 <ul class="dropdown-menu">
-                    <li class="{{ setActiveMenu(['']) }}"><a class="nav-link" href="">All</a>
+                    <li><a class="nav-link" href="{{ route('admin.report.index') }}">All</a>
                     </li>
-                    <li class="{{ setActiveMenu(['']) }}"><a class="nav-link" href="">Physical</a>
+                    <li><a class="nav-link" href="{{ route('admin.report.physical') }}">Physical</a>
                     </li>
-                    <li class="{{ setActiveMenu(['']) }}"><a class="nav-link" href="">Emotional</a>
+                    <li><a class="nav-link" href="{{ route('admin.report.emotional') }}">Emotional</a>
                     </li>
-                    <li class="{{ setActiveMenu(['']) }}"><a class="nav-link" href="">Sexual</a>
+                    <li><a class="nav-link" href="{{ route('admin.report.sexual') }}">Sexual</a>
                     </li>
-                    <li class="{{ setActiveMenu(['']) }}"><a class="nav-link" href="">Neglect</a>
+                    <li><a class="nav-link" href="{{ route('admin.report.neglect') }}">Neglect</a>
                     </li>
-                    <li class="{{ setActiveMenu(['']) }}"><a class="nav-link" href="">Others</a>
+                    <li><a class="nav-link" href="{{ route('admin.report.others') }}">Others</a>
                     </li>
                 </ul>
             </li>
-            <li class="{{ setActiveMenu(['']) }}">
+            <li>
                 <a href="" class="nav-link"><i class="fas fa-newspaper"></i><span>Newsletters</span></a>
             </li>
 

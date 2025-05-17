@@ -101,16 +101,10 @@
                             </div>
 
                             <div class="mb-3">
-                                <label for="date" class="form-label">Date of Incident</label>
-                                <input type="date" class="form-control" id="date" name="date"
-                                    value="{{ old('date') }}" required>
+                                <label for="datetime" class="form-label">Date and Time of Incident</label>
+                                <input type="datetime-local" class="form-control" id="datetime" name="datetime"
+                                    value="{{ old('datetime') }}" required>
                             </div>
-                            <div class="mb-3">
-                                <label for="time" class="form-label">Time of Incident</label>
-                                <input type="time" class="form-control" id="time" name="time"
-                                    value="{{ old('time') }}" required>
-                            </div>
-
                             <div class="mb-3">
                                 <label for="evidence" class="form-label">Upload Evidence (if any)</label>
                                 <input type="file" class="form-control" id="evidence" name="evidence">

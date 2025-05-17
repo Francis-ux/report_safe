@@ -31,8 +31,7 @@ class ReportStoreRequest extends FormRequest
             'victim_address' => ['required', 'string'],
             'abuse_type' => ['required', 'string', 'max:50'],
             'incident_description' => ['required', 'string'],
-            'date' => ['nullable', 'date'],
-            'time' => ['nullable'],
+            'datetime' => ['nullable'],
             'evidence' => ['nullable', 'file', 'mimes:jpg,jpeg,png,pdf,docx', 'max:2048'],
         ];
     }

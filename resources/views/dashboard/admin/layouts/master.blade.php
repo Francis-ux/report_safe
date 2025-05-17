@@ -52,14 +52,14 @@
             <div class="main-wrapper main-wrapper-1">
                 <div class="navbar-bg"></div>
 
-                @include('dashboard.admin.layout.navbar')
-                @include('dashboard.admin.layout.sidebar')
+                @include('dashboard.admin.layouts.navbar')
+                @include('dashboard.admin.layouts.sidebar')
                 <!-- Main Content -->
                 <div class="main-content">
                     @include('partials.sweet_alert')
                     @yield('content')
                 </div>
-                @include('dashboard.admin.layout.footer')
+                @include('dashboard.admin.layouts.footer')
             </div>
         </div>
 

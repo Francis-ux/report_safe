@@ -20,8 +20,7 @@ class Report extends Model
         'victim_address',
         'abuse_type',
         'incident_description',
-        'date',
-        'time',
+        'datetime',
         'evidence',
     ];
 }

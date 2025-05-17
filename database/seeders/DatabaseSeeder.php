@@ -19,5 +19,7 @@ class DatabaseSeeder extends Seeder
             'name' => env('APP_NAME'),
             'email' => 'admin@gmail.com',
         ]);
+
+        $this->call(ReportTableSeeder::class);
     }
 }

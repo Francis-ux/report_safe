@@ -20,3 +20,13 @@ function setActiveMenu(array $routes)
         }
     }
 }
+
+function formatDateTime($datetime, $format = 'F j, Y \a\t g:i A')
+{
+    try {
+        $dt = new DateTime($datetime);
+        return $dt->format($format);
+    } catch (Exception $e) {
+        return 'Invalid Date';
+    }
+}
