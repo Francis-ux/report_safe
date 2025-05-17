@@ -6,9 +6,12 @@ use App\Models\Report;
 use App\Trait\FileUpload;
 use App\Enum\ReportStatus;
 use Illuminate\Http\Request;
+use App\Mail\ReportReplyMail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Mail;
+use App\Http\Requests\ReportReplyRequest;
 use App\Http\Requests\ReportUpdateRequest;
 
 class ReportController extends Controller
@@ -114,6 +117,33 @@ class ReportController extends Controller
             DB::rollBack();
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'An error occurred while updating the report status.');
+        }
+    }
+
+    public function action(string $uuid)
+    {
+        $report = Report::where('uuid', $uuid)->firstOrFail();
+
+        $data = [
+            'title' => 'Report Action',
+            'report' => $report,
+        ];
+        return view('dashboard.admin.report.action', $data);
+    }
+
+    public function reply(ReportReplyRequest $request, string $uuid)
+    {
+        $data = $request->validated();
+        try {
+            $report = Report::where('uuid', $uuid)->firstOrFail();
+
+            Mail::to($report->reporter_email)->send(new ReportReplyMail($data, $report, 'Response to Your Submitted Child Abuse Report'));
+
+
+            return redirect()->back()->with('success', 'Reply sent successfully.');
+        } catch (\Exception $e) {
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred while sending the reply.');
         }
     }
 

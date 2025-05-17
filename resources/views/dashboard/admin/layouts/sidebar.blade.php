@@ -1,7 +1,7 @@
 <div class="main-sidebar sidebar-style-2">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="/"><img width="50" src="{{ asset(env('APP_LOGO')) }}" alt="{{ env('APP_NAME') }}"></a>
+            <a href="/"><img width="200" src="{{ asset(env('APP_LOGO')) }}" alt="{{ env('APP_NAME') }}"></a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="/"></a>

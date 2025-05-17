@@ -18,6 +18,7 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('report/neglect', [ReportController::class, 'neglect'])->name('report.neglect');
     Route::get('report/others', [ReportController::class, 'others'])->name('report.others');
     Route::get('report/action/{uuid}', [ReportController::class, 'action'])->name('report.action');
+    Route::post('report/reply/{uuid}', [ReportController::class, 'reply'])->name('report.reply');
     Route::get('report/show/{uuid}', [ReportController::class, 'show'])->name('report.show');
     Route::get('report/edit/{uuid}', [ReportController::class, 'edit'])->name('report.edit');
     Route::post('report/update/{uuid}', [ReportController::class, 'update'])->name('report.update');
