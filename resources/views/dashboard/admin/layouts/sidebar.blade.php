@@ -33,7 +33,7 @@
                 </ul>
             </li>
             <li>
-                <a href="" class="nav-link"><i class="fas fa-newspaper"></i><span>Newsletters</span></a>
+                <a href="{{ route('admin.newsletter.index') }}" class="nav-link"><i class="fas fa-newspaper"></i><span>Newsletters</span></a>
             </li>
 
         </ul>

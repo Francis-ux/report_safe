@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Dashboard\Admin\ReportController;
 use App\Http\Controllers\Dashboard\Admin\ProfileController;
 use App\Http\Controllers\Dashboard\Admin\DashboardController;
+use App\Http\Controllers\Dashboard\Admin\NewsletterController;
 
 Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
@@ -23,4 +24,8 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('report/edit/{uuid}', [ReportController::class, 'edit'])->name('report.edit');
     Route::post('report/update/{uuid}', [ReportController::class, 'update'])->name('report.update');
     Route::get('report/delete/{uuid}', [ReportController::class, 'delete'])->name('report.delete');
+
+    Route::get('newsletter/index', [NewsletterController::class, 'index'])->name('newsletter.index');
+    Route::post('newsletter/send/email', [NewsletterController::class, 'sendEmail'])->name('newsletter.send.email');
+    Route::get('newsletter/delete/{uuid}', [NewsletterController::class, 'delete'])->name('newsletter.delete');
 });

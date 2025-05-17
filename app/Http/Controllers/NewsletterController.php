@@ -17,13 +17,13 @@ class NewsletterController extends Controller
 
         DB::beginTransaction();
         try {
-            $newsletterSubscriber = Newsletter::firstOrNew(
+            $newsletter = Newsletter::firstOrNew(
                 ['email' => $data['email']],
                 ['uuid' => Str::uuid()]
             );
 
-            if (!$newsletterSubscriber->exists) {
-                $newsletterSubscriber->save();
+            if (!$newsletter->exists) {
+                $newsletter->save();
             }
 
             DB::commit();
@@ -38,9 +38,9 @@ class NewsletterController extends Controller
 
     public function unsubscribe(string $email)
     {
-        $newsletterSubscriber = Newsletter::where('email', $email)->firstOrFail();
-        if ($newsletterSubscriber) {
-            $newsletterSubscriber->update(['status' => 0]);
+        $newsletter = Newsletter::where('email', $email)->firstOrFail();
+        if ($newsletter) {
+            $newsletter->update(['status' => 0]);
             return redirect()->route('home')->with('success', 'You have been unsubscribed from our newsletter.');
         }
     }
