@@ -9,7 +9,7 @@ Route::middleware('admin')->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::get('/profile/index', [ProfileController::class, 'index'])->name('profile.index');
-    Route::post('/profile/store', [ProfileController::class, 'store'])->name('profile.store');
+    Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 
     Route::get('report/index', [ReportController::class, 'index'])->name('report.index');
     Route::get('report/physical', [ReportController::class, 'physical'])->name('report.physical');
