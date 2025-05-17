@@ -10,9 +10,7 @@
 
         <!-- General CSS Files -->
         <link rel="stylesheet" href="/dashboard/assets/modules/bootstrap/css/bootstrap.min.css">
-        {{-- <link rel="stylesheet" href="/dashboard/assets/modules/fontawesome/css/all.min.css"> --}}
-
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+        <link rel="stylesheet" href="/dashboard/assets/modules/fontawesome/css/all.min.css">
 
         <!-- CSS Libraries -->
         <link rel="stylesheet" href="/dashboard/assets/modules/jqvmap/dist/jqvmap.min.css">
