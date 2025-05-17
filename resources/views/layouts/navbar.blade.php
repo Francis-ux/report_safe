@@ -2,7 +2,8 @@
 <div class="container-fluid nav-bar bg-light">
     <nav class="navbar navbar-expand-lg navbar-light bg-white p-3 py-lg-0 px-lg-4">
         <a href="/" class="navbar-brand d-flex align-items-center m-0 p-0 d-lg-none">
-            <h1 class="text-primary m-0">{{ env('APP_NAME') }}</h1>
+            {{-- <h1 class="text-primary m-0">{{ env('APP_NAME') }}</h1> --}}
+            <img width="200" src="{{ asset(env('APP_LOGO')) }}" alt="{{ env('APP_NAME') }}">
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="fa fa-bars"></span>
