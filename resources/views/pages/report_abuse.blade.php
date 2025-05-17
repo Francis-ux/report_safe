@@ -16,26 +16,133 @@
     </div>
     <!-- Page Header End -->
 
-    <!-- Coming Soon Start -->
+    <!-- Report Abuse Start -->
     <div class="container-xxl py-5">
-        <div class="container text-center">
-            <h6 class="text-secondary text-uppercase">Stay Tuned</h6>
-            <h1 class="mb-4">Our Child Abuse Reporting System is Coming Soon</h1>
-            <p class="mb-4">
-                We are working hard to create a safe space for you to report incidents of child abuse. Stay tuned as we get
-                closer to launch. Our platform will provide a secure, anonymous, and confidential way to ensure that
-                children are protected.
-            </p>
-            <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i>Safe and anonymous reporting</p>
-            <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i>Access to expert support and
-                resources</p>
-            <p class="fw-medium text-primary"><i class="fa fa-check text-success me-3"></i>Quick response and follow-up</p>
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                @include('partials.bootstrap_alert')
+                @include('partials.validation_message')
+                <div class="card shadow-lg border-0">
+                    <div class="card-header bg-primary text-white text-center">
+                        <h4 class="mb-0">Child Abuse Reporting Form</h4>
+                        <small>Your information will be kept confidential</small>
+                    </div>
+                    <div class="card-body p-4">
+                        <form method="POST" action="{{ route('report.abuse.store') }}">
+                            @csrf
 
-            <div class="bg-primary d-flex align-items-center p-4 mt-5 justify-content-center">
-                <p class="fs-5 fw-medium mb-2 text-white">Have Questions?</p>
-                <h3 class="m-0 text-secondary">Call us at: {{ env('APP_PHONE') }}</h3>
+                            <!-- Reporter Info -->
+                            <h5 class="mb-3">Reporter Information</h5>
+
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="anonymousSwitch" name="anonymous"
+                                    checked>
+                                <label class="form-check-label" for="anonymousSwitch">Report anonymously</label>
+                            </div>
+
+                            <div class="row g-3 reporter-fields">
+                                <div class="col-md-6">
+                                    <label for="reporter_name" class="form-label">Full Name</label>
+                                    <input type="text" class="form-control" id="reporter_name" name="reporter_name"
+                                        value="{{ old('reporter_name') }}" placeholder="Optional if anonymous">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="reporter_email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="reporter_email" name="reporter_email"
+                                        value="{{ old('reporter_email') }}" placeholder="Optional if anonymous">
+                                </div>
+                                <div class="col-md-12">
+                                    <label for="reporter_phone" class="form-label">Phone Number</label>
+                                    <input type="text" class="form-control" id="reporter_phone" name="reporter_phone"
+                                        value="{{ old('reporter_phone') }}" placeholder="Optional if anonymous">
+                                </div>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <!-- Victim Info -->
+                            <h5 class="mb-3">Victim Information</h5>
+
+                            <div class="mb-3">
+                                <label for="victim_name" class="form-label">Victim's Name (if known)</label>
+                                <input type="text" class="form-control" id="victim_name" name="victim_name"
+                                    value="{{ old('victim_name') }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="victim_age" class="form-label">Victim's Age</label>
+                                <input type="number" class="form-control" id="victim_age" name="victim_age"
+                                    value="{{ old('victim_age') }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="victim_address" class="form-label">Victim's Address or Location</label>
+                                <textarea class="form-control" id="victim_address" name="victim_address" rows="2" required>{{ old('victim_address') }}</textarea>
+                            </div>
+
+                            <hr class="my-4">
+
+                            <!-- Abuse Details -->
+                            <h5 class="mb-3">Abuse Details</h5>
+
+                            <div class="mb-3">
+                                <label for="abuse_type" class="form-label">Type of Abuse</label>
+                                <select class="form-select" id="abuse_type" name="abuse_type" required>
+                                    <option selected disabled>Select type</option>
+                                    <option value="physical" @selected(old('abuse_type') == 'physical')>Physical</option>
+                                    <option value="emotional" @selected(old('abuse_type') == 'emotional')>Emotional</option>
+                                    <option value="sexual" @selected(old('abuse_type') == 'sexual')>Sexual</option>
+                                    <option value="neglect" @selected(old('abuse_type') == 'neglect')>Neglect</option>
+                                    <option value="other" @selected(old('abuse_type') == 'other')>Other</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="incident_description" class="form-label">Description of Incident</label>
+                                <textarea class="form-control" id="incident_description" name="incident_description" rows="4" required>{{ old('incident_description') }}</textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="date" class="form-label">Date of Incident</label>
+                                <input type="date" class="form-control" id="date" name="date"
+                                    value="{{ old('date') }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="time" class="form-label">Time of Incident</label>
+                                <input type="time" class="form-control" id="time" name="time"
+                                    value="{{ old('time') }}" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="evidence" class="form-label">Upload Evidence (if any)</label>
+                                <input type="file" class="form-control" id="evidence" name="evidence">
+                            </div>
+
+                            <div class="d-grid mt-4">
+                                <button type="submit" class="btn btn-primary btn-lg">Submit Report</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-footer text-center text-muted small">
+                        In case of emergency, call <strong>{{ env('APP_PHONE') }}</strong>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <!-- Coming Soon End -->
+    <!-- Report Abuse End -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const anonymousSwitch = document.getElementById('anonymousSwitch');
+            const reporterFields = document.querySelectorAll('.reporter-fields input');
+
+            function toggleFields() {
+                reporterFields.forEach(field => {
+                    field.disabled = anonymousSwitch.checked;
+                });
+            }
+
+            anonymousSwitch.addEventListener('change', toggleFields);
+            toggleFields(); // Run on page load
+        });
+    </script>
 @endsection

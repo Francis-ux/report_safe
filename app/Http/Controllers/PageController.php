@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactStoreRequest;
+use App\Http\Requests\ReportStoreRequest;
 use App\Mail\ContactMail;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -51,5 +53,26 @@ class PageController extends Controller
         $data = ['title' => "Report Abuse"];
 
         return view('pages.report_abuse', $data);
+    }
+
+    public function reportAbuseStore(ReportStoreRequest $request)
+    {
+        $data = $request->validated();
+        // dd($data);
+        try {
+            DB::beginTransaction();
+
+            $data['uuid'] = str()->uuid();
+            $data['anonymous'] = $request->has('anonymous') ? 1 : 0;
+            Report::create($data);
+
+            DB::commit();
+
+            return redirect()->route('report.abuse')->with('success', 'Your report has been submitted successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+            return redirect()->route('report.abuse')->with('error', 'An error occurred while submitting your report.');
+        }
     }
 }
