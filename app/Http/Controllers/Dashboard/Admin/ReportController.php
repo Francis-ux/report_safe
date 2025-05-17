@@ -3,12 +3,16 @@
 namespace App\Http\Controllers\Dashboard\Admin;
 
 use App\Models\Report;
+use App\Trait\FileUpload;
 use App\Enum\ReportStatus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 
 class ReportController extends Controller
 {
+    use FileUpload;
     public function index()
     {
         $data = [
@@ -67,5 +71,26 @@ class ReportController extends Controller
         ];
 
         return view('dashboard.admin.report.others', $data);
+    }
+
+
+    public function delete(string $uuid)
+    {
+        try {
+            DB::beginTransaction();
+
+            $report = Report::where('uuid', $uuid)->first();
+
+            $this->deleteFile($report->evidence);
+
+            $report->delete();
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Report deleted successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred while deleting the report.');
+        }
     }
 }

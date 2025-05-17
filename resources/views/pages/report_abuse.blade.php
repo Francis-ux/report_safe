@@ -28,7 +28,7 @@
                         <small>Your information will be kept confidential</small>
                     </div>
                     <div class="card-body p-4">
-                        <form method="POST" action="{{ route('report.abuse.store') }}">
+                        <form method="POST" action="{{ route('report.abuse.store') }}" enctype="multipart/form-data">
                             @csrf
 
                             <!-- Reporter Info -->
