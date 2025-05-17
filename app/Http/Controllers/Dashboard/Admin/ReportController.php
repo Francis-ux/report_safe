@@ -73,13 +73,23 @@ class ReportController extends Controller
         return view('dashboard.admin.report.others', $data);
     }
 
+    public function show(string $uuid)
+    {
+        $report = Report::where('uuid', $uuid)->firstOrFail();
+
+        $data = [
+            'title' => 'Report Details',
+            'report' => $report,
+        ];
+        return view('dashboard.admin.report.show', $data);
+    }
 
     public function delete(string $uuid)
     {
         try {
             DB::beginTransaction();
 
-            $report = Report::where('uuid', $uuid)->first();
+            $report = Report::where('uuid', $uuid)->firstOrFail();
 
             $this->deleteFile($report->evidence);
 
