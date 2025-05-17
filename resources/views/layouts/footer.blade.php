@@ -25,11 +25,18 @@
                 <h4 class="text-light mb-4">Stay Informed</h4>
                 <p>Sign up for our newsletter to receive important updates on child abuse prevention, reporting
                     guidelines, and resources available to help protect children.</p>
+                @include('partials.bootstrap_alert')
                 <div class="position-relative mx-auto" style="max-width: 400px;">
-                    <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="email" placeholder="Your email"
-                        required>
-                    <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Sign
-                        Up</button>
+                    <form action="{{ route('newsletter.subscribe') }}" method="post">
+                        @csrf
+                        <input class="form-control border-0 w-100 py-3 ps-4 pe-5 @error('email') is-invalid @enderror"
+                            type="email" name="email" placeholder="Your email">
+                        @error('email')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                        @enderror
+                        <button type="submit" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">Sign
+                            Up</button>
+                    </form>
                 </div>
             </div>
 
