@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ReportUpdateRequest;
 
 class ReportController extends Controller
 {
@@ -82,6 +83,38 @@ class ReportController extends Controller
             'report' => $report,
         ];
         return view('dashboard.admin.report.show', $data);
+    }
+
+    public function edit(string $uuid)
+    {
+        $report = Report::where('uuid', $uuid)->firstOrFail();
+
+        $data = [
+            'title' => 'Edit Report Status',
+            'report' => $report,
+            'reportStatuses' => ReportStatus::cases(),
+        ];
+        return view('dashboard.admin.report.edit', $data);
+    }
+
+    public function update(ReportUpdateRequest $request, string $uuid)
+    {
+        $data = $request->validated();
+
+        try {
+            DB::beginTransaction();
+
+            $report = Report::where('uuid', $uuid)->firstOrFail();
+
+            $report->update($data);
+
+            DB::commit();
+            return redirect()->back()->with('success', 'Report status updated successfully.');
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error($e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred while updating the report status.');
+        }
     }
 
     public function delete(string $uuid)

@@ -22,5 +22,6 @@ class Report extends Model
         'incident_description',
         'datetime',
         'evidence',
+        'status',
     ];
 }
